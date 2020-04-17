@@ -31,4 +31,16 @@ class CityController {
         return ResponseEntity(city, HttpStatus.CREATED)
     }
 
+    @PutMapping(value=["/update/{id}"], consumes = [APPLICATION_JSON_VALUE], produces = [APPLICATION_JSON_VALUE])
+    fun updateCity(@PathVariable id:Int, @RequestBody city: CityEntity): ResponseEntity<CityEntity>{
+        listOfCities[id] =  city
+        return ResponseEntity(city, HttpStatus.OK)
+    }
+
+    @DeleteMapping(value=["/delete/{id}"])
+    fun deleteCity(@PathVariable id:Int):ResponseEntity<String>{
+        listOfCities.remove(listOfCities[id])
+        return ResponseEntity("Deleted", HttpStatus.OK)
+    }
+
 }
